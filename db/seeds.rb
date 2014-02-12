@@ -1,7 +1,39 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+positions = [{name: "leader", abbr: "LD"}, 
+  {name: "programmer", abbr: "PG"}, 
+  {name: "chief executive officer", abbr: "CEO"}]
+Position.create(positions)  
+
+
+User.create(name: "Admin", email: "admin@example.com", password: "abc123", 
+  password_confirmation: "abc123", admin: 1, position_id: 1, birthday: "1/1/2000")
+users = []
+(1..40).each do |i| 
+  users << {name: "User#{i}", email: "user#{i}@example.com", password: "abc123", password_confirmation: "abc123",
+    position_id: i%2+2, birthday: "2/2/2002"}
+end
+User.create(users)
+
+
+skills = [{name: "Ruby"}, {name: "SQL"}, {name: "PHP"}, {name: "Git"}]
+Skill.create(skills)
+
+
+user_skills = []
+(1..40).each do |i|
+  user_skills << {user_id: 2+Random.rand(39), skill_id: 1+Random.rand(4), 
+    used_year_number: Random.rand(10), level: (1+Random.rand(6)).to_s}
+end
+UserSkill.create(user_skills)
+
+teams = [
+  {name: "Training", desc: "train new members", leader_id: 2},
+  {name: "Rails", desc: "web development with Rails", leader_id: 3},
+  {name: "Smartphone", desc: "smartphone development", leader_id: 4}
+]
+Team.create(teams)
+
+projects = [
+  {name: "Framgia Test System", desc: "framgia test system", abbr: "FTS", team_id: 1, leader_id: 2},
+  {name: "Framgia Game", desc: "framgia smartphone game", abbr: "FG", team_id: 3, leader_id: 4}
+]
+Project.create(projects)
