@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(version: 20140212102938) do
     t.integer  "team_id"
     t.integer  "admin",           default: 0
     t.string   "password_digest"
+    t.string   "remember_token"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
