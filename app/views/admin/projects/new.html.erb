@@ -1,0 +1,47 @@
+<h1> Project </h1>
+
+<div class="span5 offset3">
+  <%= form_for [:admin, @project] do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+    <%= f.label "Name" %>
+    <%= f.text_field :name %>
+    <%= f.label "Abbreviation" %>
+    <%= f.text_field :abbr %>
+    <%= f.label "Team incharge" %>
+    <%= f.collection_select :team_id, Team.all, :id, :name,
+      {select: "1", include_blank: "Select team ..."} %>
+    <%= f.label "Team leader" %>
+    <%= f.collection_select :leader_id, {}, :id, :name %>
+    <%= f.label "Start time" %>
+    <%= f.date_select :start_date%>
+    <%= f.label "End time" %>
+    <%= f.date_select :end_date%>
+    <%= f.submit "Create", class: "btn btn-large btn-primary" %>
+  <% end %>
+</div>
+
+<script>
+$(document).ready(function(){
+  $('#project_team_id').change(function(){
+    getTeamMembers();
+  });
+  getTeamMembers();
+});
+
+function getTeamMembers() {
+  var subject_id = $('#project_team_id').val();
+  $.ajax({
+    type: "GET",
+    dataType: "json",
+    url: "/teams/" + subject_id + "/users",
+    success: function(data){
+      var html = "";
+      var index;
+      for (index = 0; index < data.length; index++) {
+        html = html + "<option value=\"" + data[index].id + "\">" + data[index].name + "</option>";
+      }
+      $("#project_leader_id").html(html);
+    }
+  }); 
+}
+</script>

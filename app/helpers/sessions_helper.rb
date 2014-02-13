@@ -40,6 +40,10 @@ module SessionsHelper
     current_user.admin == 1
   end
 
+  def admin_user
+    redirect_to root_url unless admin_user?
+  end
+  
   def sign_out
     params = {remember_token: User.encrypt(User.new_remember_token)}
 

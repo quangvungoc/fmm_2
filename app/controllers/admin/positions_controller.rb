@@ -51,8 +51,4 @@ class Admin::PositionsController < ApplicationController
   def position_params
     params.require(:position).permit(:name, :abbr)
   end
-
-  def admin_user
-    redirect_to root_url unless admin_user?
-  end
 end

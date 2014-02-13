@@ -6,6 +6,11 @@ Fmm2::Application.routes.draw do
   namespace :admin do
     resources :users, only: [:new, :create, :index, :destroy]
     resources :positions
+    resources :projects
+  end
+
+  resources :teams do
+    resources :users
   end
   
   root  'static_pages#home'

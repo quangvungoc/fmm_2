@@ -7,7 +7,8 @@ class User < ActiveRecord::Base
   belongs_to :position
   has_many :user_skills
   has_many :skills, through: :user_skills
-  
+  has_and_belongs_to_many :projects
+
   validates :name,  presence: true, length: {maximum: 50}
   validates :email, presence: true, length: {maximum: 30},
     format: {with: VALID_EMAIL_REGEX}, uniqueness: {case_sensitive: false}
