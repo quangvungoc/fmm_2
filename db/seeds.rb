@@ -9,7 +9,7 @@ User.create(name: "Admin", email: "admin@example.com", password: "abc123",
 users = []
 (1..40).each do |i| 
   users << {name: "User#{i}", email: "user#{i}@example.com", password: "abc123", password_confirmation: "abc123",
-    position_id: i%2+2, birthday: "2/2/2002"}
+    position_id: i%2+2, birthday: "2/2/2002", team_id: i%3+1}
 end
 User.create(users)
 
