@@ -313,11 +313,20 @@ aside {
   display: inline-block;
   width: 70px;
 }
+
 #user_birthday_2i {
   display: inline-block;
   width: 110px;
 }
+
 #user_birthday_3i {
   display: inline-block;
   width: 50px;
+}
+
+#dialog-signin {
+  background: $white;
+  border: 4px solid $gray;
+  padding: 5px;
+  resizable: false;
 }
