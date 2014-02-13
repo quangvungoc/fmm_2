@@ -6,3 +6,16 @@
   </h2>
   
 </div>
+
+<script>
+  $(document).ready(function() {
+    $('#sign-in-link').click(function(event){
+      event.preventDefault();
+      $('#dialog-signin').dialog();
+    });
+  });
+</script>
+
+<div id="dialog-signin" title="Sign in" style="display:none;">
+  <%= render 'sessions/signin_form' %>
+</div>
