@@ -1,0 +1,13 @@
+<h1><%= @team.name %></h1>
+<h2><%= @team.desc %></h2>
+<h2>Leader: <%= @team.leader.name %></h2>
+<table width="300" align="center">
+  <tr style="border-bottom:1px solid black;">
+    <td align="center"> Members </td>
+  </tr>
+  <% @team.members.each do |member| %>
+  <tr>
+    <td align="center"><%= link_to member.name, member %></td>
+  </tr>
+  <% end %>
+</table>
