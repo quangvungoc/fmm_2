@@ -1,0 +1,11 @@
+<h1> Position </h1>
+
+<div class="span5 offset3">
+  <%= form_for [:admin, @position] do |f| %>
+    <%= f.label "Name" %>
+    <%= f.text_field :name %>
+    <%= f.label "Abbreviation" %>
+    <%= f.text_field :abbr %>
+    <%= f.submit "Update", class: "btn btn-large btn-primary" %>
+  <% end %>
+</div>
