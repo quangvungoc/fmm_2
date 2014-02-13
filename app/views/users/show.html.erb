@@ -1,0 +1,11 @@
+<section class="span4">
+  <h1 style="text-align:left"> Profile </h1>
+  <table style="width:300px"> 
+    <tr><td>Name</td> <td><%= @user.name %></td></tr>
+    <tr><td>Email</td> <td><%= @user.email %></td></tr>
+    <tr><td>Birthday</td> <td><%= @user.birthday.to_date %></td></tr>
+    <tr><td>Team</td> <td><%= @user.team.name  unless @user.team.nil?%></td></tr>
+    <tr><td>Position</td> <td><%= @user.position.abbr %> (<%= @user.position.name %>)</td></tr>
+    <tr><td>Skill</td> <td><%= @user.skills.each.map{|s|s.name}.join(", ") %></td></tr>
+  </table>
+</section>

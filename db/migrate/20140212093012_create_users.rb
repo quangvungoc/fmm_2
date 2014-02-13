@@ -8,6 +8,7 @@ class CreateUsers < ActiveRecord::Migration
       t.integer :team_id
       t.integer :admin, default: 0
       t.string :password_digest
+      t.string :remember_token
 
       t.timestamps
     end

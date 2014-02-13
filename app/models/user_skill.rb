@@ -1,2 +1,3 @@
-class UserSkill < ActiveRecord::Base
+class UserSkill < ActiveRecord::Base  
+  belongs_to :skill
 end
