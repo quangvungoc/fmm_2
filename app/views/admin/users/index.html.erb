@@ -1,0 +1,39 @@
+<h1 style="text-align:left"> Users </h1>
+<br>
+Team: 
+<%= select_tag "team_id", options_from_collection_for_select(@teams, "id", "name"), 
+  include_blank: true %>
+
+<table id="list-user-table" width="700" >
+  <colgroup>
+    <col span="1" style="width: 25%;">
+    <col span="1" style="width: 40%;">
+    <col span="1" style="width: 15%;">
+    <col span="1" style="width: 10%;">
+    <col span="1" style="width: 10%;">
+  </colgroup>
+  <thead>
+    <tr>
+      <td><b> Name </b></td>
+      <td><b> Email </b></td>
+      <td><b> Birthday </b></td>
+      <td><b> Position </b></td>
+      <td><b> Team </b></td>
+    </tr>
+  </thead>
+  <tbody>
+  <%= render @users %>
+  <%= will_paginate %>
+  </tbody>
+</table>
+
+<script>
+  $(function(){
+    $('#team_id').bind('change', function () {
+      var url = "/admin/users/?team_id=" + $(this).val();
+      if (url) {
+        window.location.replace(url);
+      }
+    });
+  });
+</script>
