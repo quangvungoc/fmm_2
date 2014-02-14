@@ -1,0 +1,23 @@
+<section class="span4">
+  <h1 style="text-align:left"> Profile </h1>
+  <%= nested_form_for [:admin, @user] do |f| %>
+    <table style="width:300px;"> 
+      <tr><td>Name</td> <td><%= f.text_field :name %></td></tr>
+      <tr><td>Email</td> <td><%= f.text_field :email %></td></tr>
+      <tr><td>Birthday</td><td><%= f.date_select :birthday %></td></tr>
+      <tr><td>Position</td><td><%= f.select :position_id, Position.all.map{|p| [p.name, p.id]} %></td></tr>
+      <tr><td>Skills</td>
+        <td id="skill-box">
+          <%= f.fields_for :user_skills do |builder| %>
+            Skill name:<%= builder.select :skill_id, Skill.all.map{|s| [s.name, s.id]}, class: "select_skills" %>
+            Level: <%= builder.text_field :level, class: "select_skills" %>
+            Used years:<%= builder.text_field :used_year_number %>
+            <%= builder.link_to_remove "delete" %>
+          <% end %> 
+          <%= f.link_to_add "add", :user_skills %>
+        </td>
+
+      <tr><td></td> <td><%= f.submit "Update", class: "btn btn-primary" %></td><tr>
+    </table>
+  <% end %>
+</section>

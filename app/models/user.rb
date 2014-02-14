@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   validates :password, length: {minimum: 6}, if: :need_validate 
   
   has_secure_password
+  accepts_nested_attributes_for :user_skills
   
   before_save {self.email.downcase!}
   before_create :create_remember_token

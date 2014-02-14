@@ -1,0 +1,7 @@
+<tr>
+  <td><%= link_to user.name, user %></td>
+  <td><%= user.email %></td>
+  <td><%= user.birthday.to_date %></td>
+  <td><%= user.position.abbr unless user.position.nil? %></td>
+  <td><%= user.team.name unless user.team.nil? %></td>
+</tr>
