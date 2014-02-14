@@ -4,7 +4,7 @@ Fmm2::Application.routes.draw do
   resources :teams, only: [:show, :index]
 
   namespace :admin do
-    resources :users, only: [:new, :create, :index, :destroy]
+    resources :users
     resources :positions
     resources :projects
   end

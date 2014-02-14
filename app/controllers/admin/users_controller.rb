@@ -11,17 +11,31 @@ class Admin::UsersController < ApplicationController
   end
   
   def new
-    @user = User.new
-    @positions = Position.all
+    @user = User.new    
   end
   
   def create
-    @user = User.new user_params|
+    @user = User.new user_params
     if @user.save 
       flash[:success] = "New account was created successfully"
       redirect_to admin_users_path
     else
       render 'new'
+    end
+  end
+
+  def edit
+    @user = User.find params[:id]
+  end
+
+  def update
+    @user = User.find params[:id]
+    if @user.update_attributes user_params
+      flash[:success] = "Update succesfully"
+      redirect_to edit_admin_user_path @user
+    else
+      flash[:error] = "Cannot update"
+      render 'edit'
     end
   end
 
@@ -33,13 +47,13 @@ class Admin::UsersController < ApplicationController
       @user.destroy
       flash[:success] = "User deleted"
     end
-    redirect_to users_url
+    redirect_to admin_users_path
   end
 
   private  
   def user_params
     params.require(:user).permit(:name, :email, :password,
       :password_confirmation, :email_confirmation, :remember_token, :birthday, :position_id, 
-      :user_skills_atttributes[:id, :skill_id, :level, :used_year_number])
+      user_skills_attributes: [:id, :skill_id, :level, :used_year_number, :_destroy])
   end
 end
