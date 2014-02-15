@@ -1,0 +1,7 @@
+<tr>
+  <td><%= link_to team.name, [:admin, team] %></td>
+  <td><%= team.desc %></td>
+  <td><%= team.leader.name %></td>
+  <td><%= link_to 'edit', [:edit, :admin, team] %></td>
+  <td><%= link_to 'x', [:admin, team], method: :delete, data: {confirm: "You sure?"} %></td>
+</tr>

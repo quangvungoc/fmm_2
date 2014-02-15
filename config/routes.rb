@@ -4,6 +4,7 @@ Fmm2::Application.routes.draw do
   resources :teams, only: [:show, :index]
 
   namespace :admin do
+    resources :teams
     resources :users
     resources :positions
     resources :projects

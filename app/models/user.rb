@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 
   attr_accessor :need_validate
 
-  belongs_to :team
+  belongs_to :team, dependent: :delete
   belongs_to :position
   has_many :user_skills
   has_many :skills, through: :user_skills
@@ -12,13 +12,15 @@ class User < ActiveRecord::Base
   validates :name,  presence: true, length: {maximum: 50}
   validates :email, presence: true, length: {maximum: 30},
     format: {with: VALID_EMAIL_REGEX}, uniqueness: {case_sensitive: false}
-  validates :password, length: {minimum: 6}, if: :need_validate 
-  
+  validates :password, length: {minimum: 6}, if: :need_validate
+
   has_secure_password
   accepts_nested_attributes_for :user_skills
   
   before_save {self.email.downcase!}
   before_create :create_remember_token
+
+  scope :teamless, -> { where(team_id: nil)}
 
   def User.new_remember_token
     SecureRandom.urlsafe_base64
@@ -29,7 +31,7 @@ class User < ActiveRecord::Base
   end
 
   def admin?
-    admin==1
+    admin == 1
   end
 
   private

@@ -1,0 +1,21 @@
+<h1> New Team </h1>
+
+<div align="center">
+  <%= form_for [:admin, @team] do |f| %>
+    <table align="center">
+      <tr>
+        <td>Name</td>
+        <td><%= f.text_field :name %></td>
+      </tr>
+      <tr>
+        <td>Description</td>
+        <td><%= f.text_field :desc %></td>
+      </tr>
+      <tr>
+        <td>Leader</td>
+        <td><%= f.select :leader_id, User.teamless.map{|u| [u.name, u.id]} %></td>
+      </tr>
+    </table>
+    <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
+  <% end %>
+</div>

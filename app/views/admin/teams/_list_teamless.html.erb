@@ -1,0 +1,11 @@
+<table align="center" id="list-teamless">
+  <tr>
+    <td><b>Users</b></td>
+  <tr>
+  <% User.teamless.each do |user| %>
+    <tr>
+      <td><%= user.name %></td>
+      <td><%= link_to '+', edit_admin_team_path(@team, user_id: user.id), remote: true %></td>
+    </tr>
+  <% end %>
+</table>

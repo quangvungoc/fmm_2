@@ -1,0 +1,12 @@
+<table align="center" id="list-members">
+  <tr>
+    <td><b>Members</b></td>
+  <tr>
+  <% @team.members.each do |member| %>
+    <tr>
+      <td><%= member.name %></td>
+      <td><%= link_to 'x', admin_team_path(@team, user_id: member.id), remote: true,
+        method: :delete %></td>
+    </tr>
+  <% end %>
+</table>

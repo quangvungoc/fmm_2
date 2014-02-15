@@ -1,0 +1,33 @@
+<h1><%= @team.name %></h1>
+<h2><%= @team.desc %></h2>
+<h2>Leader: <%= @team.leader.name %></h2>
+<table align="center">
+  <tr> 
+    <td style="border-bottom:1px solid black;" align="center">
+      Members 
+    </td>
+    <td style="border-bottom:1px solid black;" align="center">
+      Projects
+    </td>
+  </tr>
+  <tr>
+    <td>
+      <table width="300" align="center">
+        <% @team.members.each do |member| %>
+        <tr>
+          <td align="center"><%= link_to member.name, edit_admin_user_path(member) %></td>
+        </tr>
+        <% end %>
+      </table>
+    </td>
+    <td>
+      <table width="300" align="center">
+        <% @team.projects.each do |project| %>
+        <tr>
+          <td align="center"><%= link_to project.name, edit_admin_project_path(project) %></td>
+        </tr>
+        <% end %>
+      </table>
+    </td>
+  </tr>
+</table>
